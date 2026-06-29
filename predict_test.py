@@ -1,6 +1,8 @@
 import pandas as pd
 import joblib
 
+test_df = pd.read_csv(r'cleaned_titanic_test.csv')
+
 FEATURES = ['Pclass', 'Sex', 'Age', 'SibSp', 'Parch', 'Fare', 'Embarked', 'Has_Cabin']
 
 def prepare_features(df):
@@ -10,7 +12,7 @@ def prepare_features(df):
     return df
 
 def main():
-    test_df = pd.read_csv('cleaned_titanic_test.csv')
+    # Reuse the test_df already loaded above (no need to read the CSV again)
     df = prepare_features(test_df)
 
     model = joblib.load('titanic_model.pkl')

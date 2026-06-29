@@ -1,4 +1,3 @@
-from timeit import main
 import pandas as pd
 import numpy as np
 import joblib
@@ -11,8 +10,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
 
-train_df = pd.read_csv(r"/home/muhammad/Documents/TechCrush/Assignments/Assignment - 2/cleaned_titanic_train.csv")
-test_df = pd.read_csv(r"/home/muhammad/Documents/TechCrush/Assignments/Assignment - 2/cleaned_titanic_test.csv")
+train_df = pd.read_csv(r"cleaned_titanic_train.csv")
 
 """print(train_df.describe())
 print(test_df.describe())"""
@@ -65,7 +63,7 @@ def prepare_features(df):
 ## Running models
 def main():
     # Load your already-cleaned train data
-    train_df = pd.read_csv('cleaned_titanic_train.csv')
+    # Reuse the train_df already loaded above (no need to read the CSV again)
     df = prepare_features(train_df)
 
     X = df[FEATURES]
