@@ -10,6 +10,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
+
 train_df = pd.read_csv(r"/home/muhammad/Documents/TechCrush/Assignments/Assignment - 2/cleaned_titanic_train.csv")
 test_df = pd.read_csv(r"/home/muhammad/Documents/TechCrush/Assignments/Assignment - 2/cleaned_titanic_test.csv")
 
@@ -64,7 +65,7 @@ def prepare_features(df):
 ## Running models
 def main():
     # Load your already-cleaned train data
-    train_df = pd.read_csv('train_cleaned.csv')
+    train_df = pd.read_csv('cleaned_titanic_train.csv')
     df = prepare_features(train_df)
 
     X = df[FEATURES]
@@ -84,7 +85,11 @@ def main():
         model.fit(X_train, y_train)
         preds = model.predict(X_val)
         acc = accuracy_score(y_val, preds)
+        report = classification_report(y_val, preds)
+        matrix = confusion_matrix(y_val, preds)
         print(f"{name} accuracy: {acc:.4f}")
+        print(f"Classification Report for {name}:\n{report}")
+        print(f"Confusion Matrix for {name}:\n{matrix}\n")
 
         if acc > best_acc:
             best_name, best_model, best_acc = name, model, acc
